@@ -7,7 +7,7 @@ contract ManualToken {
 
     mapping(address => uint256) private s_balances;
 
-    function name() public view returns (string memory) {
+    function name() public pure returns (string memory) {
         return "Manual Token";
     }
 
@@ -23,7 +23,7 @@ contract ManualToken {
         return s_balances[_owner];
     }
 
-    function transfer(address _to, uint256 _amount) public returns (bool success) {
+    function transfer(address _to, uint256 _amount) public {
         uint256 previousBalances = balanceOf(msg.sender) + balanceOf(_to);
         s_balances[msg.sender] -= _amount;
         s_balances[_to] += _amount;
